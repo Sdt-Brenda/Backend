@@ -17,8 +17,8 @@ connection.connect((err) => {
 
 registro_db.create = function (registro, funCallback) { //POST
     try {
-        const expectedTypes = ['string', 'string', 'text', 'object', 'email', 'text', 'password', 'text'];
-        let params = [registro.nombre, registro.apellido, registro.dni, registro.fecha_nacimiento, registro.email, registro.genero, registro.password];
+        const expectedTypes = ['string', 'string', 'text', 'text', 'email', 'text', 'password', 'text'];
+        let params = [registro.nombre, registro.apellido, registro.dni, registro.fecha_nacimiento.slice(0, -1), registro.email, registro.genero, registro.password];
         funcionesAuxiliares.validar(params, expectedTypes);
         let claveCifrada = bcrypt.hashSync(registro.password, 10);
         params[6] = claveCifrada; 
